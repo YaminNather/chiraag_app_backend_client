@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
+
 enum OrderStatus {
   verifying,
-  delivering,
+  verified,
+  @JsonValue('checked_out')
+  checkedOut,
   delivered
 }

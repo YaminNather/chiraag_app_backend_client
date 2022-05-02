@@ -7,15 +7,16 @@ part 'order.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Order {
-  const Order({required this.product, required this.purchasedBy, required this.deliverTo, required this.status});
+  const Order({required this.product, required this.purchasedBy, required this.amount, required this.deliverTo, required this.status});
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
 
   Map<String, dynamic> toJson() => _$OrderToJson(this);
 
 
-  final Product product;  
-  final String purchasedBy;  
+  final Product product;
+  final String purchasedBy;
+  final double amount;
   final String deliverTo;
   final OrderStatus status;
 }
