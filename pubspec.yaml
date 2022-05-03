@@ -12,11 +12,13 @@ environment:
 dev_dependencies:
   build_runner: ^2.1.7
   lints: ^1.0.0
-  test: ^1.16.0
+  
 dependencies: 
   device_info_plus: ^3.2.2
   http: ^0.13.4
+  image_picker: ^0.8.5
   injector: ^2.0.0
   json_annotation: ^4.4.0
   json_serializable: ^6.1.4
+  path: ^1.8.0
   shared_preferences: ^2.0.13
