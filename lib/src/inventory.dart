@@ -74,7 +74,7 @@ class Inventory {
     return r;
   }
 
-  Future<Product> addProduct(String name, double price, String description, int size) async {
+  Future<Product> addProduct(String name, double initialPrice, String description, int size, String mainImage, List<String>? images) async {
     final Map<String, String> headers = <String, String>{
       'Content-type': 'application/json'
     };
@@ -83,9 +83,11 @@ class Inventory {
     Map<String, dynamic> bodyJson = <String, dynamic>{
       'seller': sessionData.user!,
       'name': name,
-      'price': price,
+      'initialPrice': initialPrice,
       'description': description,
-      'size': size
+      'size': size,
+      'mainImage': mainImage,
+      'images': images
     };
     final http.Response response = await http.post(uri, body: jsonEncode(bodyJson), headers: headers);
 
