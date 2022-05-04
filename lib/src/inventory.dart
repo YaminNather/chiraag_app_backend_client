@@ -42,7 +42,7 @@ class Inventory {
     return r;
   }
 
-  Future<List<SoldItem>> getAllSellersProducts() async {    
+  Future<List<SoldItem>> getAllSellersProducts() async {
     const Map<String, String> headers = <String, String>{
       'Content-Type': 'application/json'
     };
@@ -74,7 +74,27 @@ class Inventory {
     return r;
   }
 
+  Future<Product> addProduct(String name, double price, String description, int size) async {
+    final Map<String, String> headers = <String, String>{
+      'Content-type': 'application/json'
+    };
 
+    final Uri uri = Uri.parse('${Globals.instance.host}/Inventory/AddProduct');
+    Map<String, dynamic> bodyJson = <String, dynamic>{
+      'seller': sessionData.user!,
+      'name': name,
+      'price': price,
+      'description': description,
+      'size': size
+    };
+    final http.Response response = await http.post(uri, body: jsonEncode(bodyJson), headers: headers);
 
+    final Map<String, dynamic> responseBodyJson = jsonDecode(response.body);
+    final Product product = Product.fromJson(responseBodyJson);
+    return product;
+  }
+  
+
+  
   final SessionData sessionData;
 }

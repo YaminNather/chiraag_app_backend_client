@@ -13,7 +13,7 @@ class Globals {
       AndroidDeviceInfo deviceInfo = await plugin.androidInfo;
 
       if(deviceInfo.isPhysicalDevice == true)
-        host = 'http://192.168.1.19:$port';
+        host = 'http://192.168.1.4:$port';
       else
         host = 'http://10.0.2.2:$port';
     }
