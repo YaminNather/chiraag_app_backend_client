@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:chiraag_app_backend_client/src/session_data.dart';
 
 import 'globals.dart';
-import 'models/address.dart';
 import 'models/models.dart';
 
 class OrderServices {
