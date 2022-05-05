@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:chiraag_app_backend_client/src/session_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -48,7 +49,7 @@ class Authentication {
     final http.Response response = await http.post(uri, headers: headers, body: jsonEncode(bodyJson));
     
     if(response.statusCode < 200 || response.statusCode > 299)
-      throw Exception();
+      throw HttpException(response.reasonPhrase!, uri: uri);
 
     AuthenticationResponse authenticationResponse = AuthenticationResponse.fromJson(jsonDecode(response.body));
     _sessionData.user = authenticationResponse.id;
@@ -69,7 +70,7 @@ class Authentication {
     final http.Response response = await http.post(uri, headers: headers, body: jsonEncode(bodyJson));
     
     if(response.statusCode < 200 || response.statusCode > 299)
-      throw Exception();
+      throw HttpException(response.reasonPhrase!, uri: uri);
 
     AuthenticationResponse authenticationResponse = AuthenticationResponse.fromJson(jsonDecode(response.body));
     _sessionData.user = authenticationResponse.id;
