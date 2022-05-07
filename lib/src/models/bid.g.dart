@@ -7,14 +7,14 @@ part of 'bid.dart';
 // **************************************************************************
 
 Bid _$BidFromJson(Map<String, dynamic> json) => Bid(
-      bidder: json['bidder'] as String,
+      bidder: User.fromJson(json['bidder'] as Map<String, dynamic>),
       productId: json['productId'] as String,
       amount: (json['amount'] as num).toDouble(),
       status: $enumDecode(_$BidStatusEnumMap, json['status']),
     );
 
 Map<String, dynamic> _$BidToJson(Bid instance) => <String, dynamic>{
-      'bidder': instance.bidder,
+      'bidder': instance.bidder.toJson(),
       'productId': instance.productId,
       'amount': instance.amount,
       'status': _$BidStatusEnumMap[instance.status],

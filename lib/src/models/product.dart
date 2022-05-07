@@ -1,3 +1,4 @@
+import 'package:chiraag_app_backend_client/chiraag_app_backend_client.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'product.g.dart';
@@ -23,7 +24,7 @@ class Product {
 
   final String id;
   final String name;
-  final String seller;
+  final User seller;
   final String description;  
   final double initialPrice;
   final DateTime createdAt;

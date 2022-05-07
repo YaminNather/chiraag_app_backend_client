@@ -1,10 +1,11 @@
+import 'user.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../enums/enums.dart';
 
 part 'bid.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Bid {
   const Bid({required this.bidder, required this.productId, required this.amount, required this.status});
 
@@ -12,9 +13,8 @@ class Bid {
 
   Map<String, dynamic> toJson() => _$BidToJson(this);
 
-
   
-  final String bidder;
+  final User bidder;
   final String productId;
   final double amount;
   final BidStatus status;

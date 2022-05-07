@@ -1,7 +1,9 @@
-import 'package:chiraag_app_backend_client/src/models/product.dart';
+import '../enums/order_status.dart';
+import 'product.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../enums/order_status.dart';
+import 'user.dart';
+
 
 part 'order.g.dart';
 
@@ -15,7 +17,7 @@ class Order {
 
 
   final Product product;
-  final String purchasedBy;
+  final User purchasedBy;
   final double amount;
   final String deliverTo;
   final OrderStatus status;
