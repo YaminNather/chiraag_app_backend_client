@@ -41,24 +41,7 @@ class OrderServices {
     final Map<String, dynamic> responseBodyJson = jsonDecode(response.body);
     final Order r = Order.fromJson(responseBodyJson);
     return r;
-  }
-
-  Future<Order> confirmBid(final String product, final String bidder, String deliverTo) async {
-    const Map<String, String> headers = <String, String>{
-      'Content-Type': 'application/json'
-    };
-    final Map<String, dynamic> bodyJson = <String, dynamic>{
-      'product': product,
-      'bidder': bidder,
-      'deliverTo': deliverTo
-    };    
-    Uri uri = Uri.parse('${Globals.instance.host}/Orders/GetOrders');
-    final http.Response response = await http.post(uri, headers: headers, body: jsonEncode(bodyJson));    
-
-    final Map<String, dynamic> responseBodyJson = jsonDecode(response.body);
-    final Order r = Order.fromJson(responseBodyJson);
-    return r;
-  }
+  }  
 
   Future<Order> completeCheckout(final String product, final Address address, final String contactNumber) async {
     const Map<String, String> headers = <String, String>{

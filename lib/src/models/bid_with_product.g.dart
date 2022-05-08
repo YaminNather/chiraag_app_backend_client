@@ -8,7 +8,7 @@ part of 'bid_with_product.dart';
 
 BidWithProduct _$BidWithProductFromJson(Map<String, dynamic> json) =>
     BidWithProduct(
-      bidder: json['bidder'] as String,
+      bidder: User.fromJson(json['bidder'] as Map<String, dynamic>),
       product: Product.fromJson(json['product'] as Map<String, dynamic>),
       amount: (json['amount'] as num).toDouble(),
       status: $enumDecode(_$BidStatusEnumMap, json['status']),
@@ -16,7 +16,7 @@ BidWithProduct _$BidWithProductFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$BidWithProductToJson(BidWithProduct instance) =>
     <String, dynamic>{
-      'bidder': instance.bidder,
+      'bidder': instance.bidder.toJson(),
       'product': instance.product.toJson(),
       'amount': instance.amount,
       'status': _$BidStatusEnumMap[instance.status],

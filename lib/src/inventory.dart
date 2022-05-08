@@ -32,8 +32,8 @@ class Inventory {
     final Uri uri = Uri.parse('${Globals.instance.host}/Inventory/SellBid');
     Map<String, dynamic> bodyJson = <String, dynamic>{
       'seller': sessionData.user!,
-      'productId': productId,
-      'amount': amount
+      'product': productId,
+      'initialPrice': amount
     };
     final http.Response response = await http.post(uri, body: jsonEncode(bodyJson), headers: headers);
 

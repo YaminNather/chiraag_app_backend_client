@@ -71,20 +71,18 @@ class BidServices {
     return r;
   }
 
-  Future<Order> acceptBid(final Bid bid) async {
-    final Map<String, String> headers = <String, String>{ HttpHeaders.contentTypeHeader: 'application/json' };
-    final Uri url = Uri.parse('${Globals.instance.host}/BidServices/AcceptBid');
-    final Map<String, dynamic> bodyJson = <String, dynamic>{
-      'product': bid.productId,
-      'bidder': bid.bidder
+  Future<Order> acceptBid(final String bidder, final String product) async {
+    const Map<String, String> headers = <String, String>{
+      'Content-Type': 'application/json'
     };
-    final http.Response response = await http.post(url, headers: headers, body: jsonEncode(bodyJson));
-    
-    if(response.statusCode < 200 || response.statusCode > 299)
-      throw HttpException(response.reasonPhrase!, uri: url);
+    final Map<String, dynamic> bodyJson = <String, dynamic>{
+      'product': product,
+      'bidder': bidder
+    };    
+    Uri uri = Uri.parse('${Globals.instance.host}/BidServices/AcceptBid');
+    final http.Response response = await http.post(uri, headers: headers, body: jsonEncode(bodyJson));    
 
     final Map<String, dynamic> responseBodyJson = jsonDecode(response.body);
-    
     final Order r = Order.fromJson(responseBodyJson);
     return r;
   }

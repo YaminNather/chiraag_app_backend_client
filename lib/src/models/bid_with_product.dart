@@ -18,7 +18,7 @@ class BidWithProduct {
   Map<String, dynamic> toJson() => _$BidWithProductToJson(this);
 
 
-  final String bidder;
+  final User bidder;
   final Product product;
   final double amount;
   final BidStatus status;
