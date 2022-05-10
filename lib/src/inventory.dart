@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'enums/sort_order.dart';
 import 'globals.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,8 +16,14 @@ class Inventory {
     return Product.fromJson(jsonDecode(response.body));
   }
 
-  Future<List<Product>> getAllProducts() async {
-    final Uri uri = Uri.parse('${Globals.instance.host}/Inventory/GetAllProducts');
+  Future<List<Product>> getAllProducts({SortOrder? sortOrder}) async {
+    Uri uri = Uri.parse('${Globals.instance.host}/Inventory/GetAllProducts');
+    if(sortOrder != null) {
+      final Map<String, String> queryParameters = <String, String> {        
+        'addedDateSortOrder' : sortOrder.name
+      };
+      uri = uri.replace(queryParameters: queryParameters);
+    }
     final http.Response response = await http.get(uri);
 
     final List<dynamic> productsJson = jsonDecode(response.body);
