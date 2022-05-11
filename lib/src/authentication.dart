@@ -79,6 +79,11 @@ class Authentication {
     return authenticationResponse.id;
   }
 
+  Future<void> logout() async {
+    _sessionData.user = null;
+    await _saveSessionDataLocally();
+  }
+
   Future<void> _saveSessionDataLocally() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString('session_data', jsonEncode(_sessionData.toJson()));
